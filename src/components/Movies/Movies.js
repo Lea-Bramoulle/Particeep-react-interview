@@ -2,17 +2,23 @@
 /* eslint-disable quotes */
 
 import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 // == Import
 import "./Movies.scss";
 import { movies$ } from "../../data/movies";
+import { setMoviesData } from "../../store/actions";
 
 // == Composant
 function Movies() {
+  const dispatch = useDispatch();
+
+  const movies = useSelector((state) => state.movies);
+
   const fetchMoviesData = async () => {
     try {
       const moviesData = await movies$;
-      console.log(moviesData);
+      dispatch(setMoviesData(moviesData));
     } catch (error) {
       console.error(error);
     }
@@ -26,14 +32,16 @@ function Movies() {
     <div className="movies">
       <h1 className="movies-title">Explore </h1>
       <div className="movies-container">
-        <div className="movies-card">
-          <img
-            src="https://images.affiches-et-posters.com//albums/3/2619/medium/affiche-film-gladiator-164.jpg"
-            alt="movie Poster"
-          />
-          <h2 className="movies-card-title">Ocean 8</h2>
-          <p className="movies-card-category">Humour</p>
-        </div>
+        {movies?.map((movie) => (
+          <div className="movies-card">
+            <img
+              src="https://images.affiches-et-posters.com//albums/3/2619/medium/affiche-film-gladiator-164.jpg"
+              alt="movie Poster"
+            />
+            <h2 className="movies-card-title">{movie.title}</h2>
+            <p className="movies-card-category">{movie.category}</p>
+          </div>
+        ))}
       </div>
     </div>
   );
