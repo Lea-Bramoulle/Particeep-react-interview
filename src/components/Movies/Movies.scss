@@ -16,8 +16,6 @@
         height:95%;
         display: flex;
         flex-wrap: wrap;
-        justify-content: space-between;
-        align-items: center;
         margin: 2rem auto;
         overflow-y: scroll;
     }
@@ -25,6 +23,7 @@
     &-card {
         width: 22%;
         margin-bottom: 2rem;
+        margin-right: 2rem;
 
         & img {
             width:100%;
