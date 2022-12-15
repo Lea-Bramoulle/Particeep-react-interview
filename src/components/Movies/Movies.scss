@@ -1,0 +1,47 @@
+@use 'src/styles/vars';
+
+.movies {
+    width:90%;
+    padding:3rem 4rem;
+    height:100vh;
+    min-height:400px;
+    background-color: vars.$backgroundLight;
+
+    &-title {
+        font-size: 2rem;
+        font-weight: bolder;
+    }
+
+    &-container {
+        height:95%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        margin: 2rem auto;
+        overflow-y: scroll;
+    }
+
+    &-card {
+        width: 22%;
+        margin-bottom: 2rem;
+
+        & img {
+            width:100%;
+            height:22rem;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+        
+        &-title {
+            font-size: 1.5rem;
+            font-weight: bolder;
+            margin:  0.25rem 1rem;
+        }
+
+        &-category {
+            margin-left: 1rem;
+            font-weight: lighter;
+        }
+    }
+}
