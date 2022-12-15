@@ -31,6 +31,33 @@
             object-fit: cover;
             border-radius: 10px;
         }
+
+        &-likes {
+            position:absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            background-color: vars.$backgroundLight;
+            padding:0.5rem 0.75rem ;
+            border-radius: 10px;
+            font-size: 0.9rem;
+
+            & i {
+                padding: 0 0.25rem;
+                cursor: pointer;
+            }
+
+            &--like {
+                margin: 0.25rem 0;
+                padding: 0.1rem 0.5rem;
+                border-right: 1px solid grey;
+            }
+
+
+            &--dislike {
+                padding: 0.1rem 0.5rem;
+            }
+
+        }
         
         &-title {
             font-size: 1.5rem;
@@ -43,4 +70,14 @@
             font-weight: lighter;
         }
     }
+}
+
+.fa-thumbs-down:hover {
+    text-shadow: 0px 0px 13px rgba(184,79,49,0.53);
+    transition-duration: 0.5s;
+}
+
+.fa-thumbs-up:hover {
+    text-shadow: 0px 0px 13px rgba(66, 195, 68, 0.53);
+    transition-duration: 0.5s;
 }

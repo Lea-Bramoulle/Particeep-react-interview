@@ -34,10 +34,21 @@ function Movies() {
       <div className="movies-container">
         {movies?.map((movie) => (
           <div className="movies-card">
-            <img
-              src="https://images.affiches-et-posters.com//albums/3/2619/medium/affiche-film-gladiator-164.jpg"
-              alt="movie Poster"
-            />
+            <div className="position-relative">
+              <img
+                src="https://images.affiches-et-posters.com//albums/3/2619/medium/affiche-film-gladiator-164.jpg"
+                alt="movie Poster"
+              />
+              <div className="movies-card-likes">
+                <span className="movies-card-likes--like">
+                  <i className="fa-regular fa-thumbs-up" /> {movie.likes}
+                </span>
+
+                <span className="movies-card-likes--dislike">
+                  {movie.dislikes} <i className="fa-regular fa-thumbs-down" />
+                </span>
+              </div>
+            </div>
             <h2 className="movies-card-title">{movie.title}</h2>
             <p className="movies-card-category">{movie.category}</p>
           </div>
