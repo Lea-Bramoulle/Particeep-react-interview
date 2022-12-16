@@ -13,17 +13,16 @@ import { useDispatch, useSelector } from "react-redux";
 // == Import
 import "./Movies.scss";
 import { movies$ } from "../../data/movies";
+
+import Pagination from "../Pagination/Pagination";
+import Categories from "../Categories/Categories";
+
 import {
   setMoviesData,
   setFilteredMoviesData,
   removeOneMovie,
   setCategoriesData,
-  setSelectedCategoriesData,
-  removeSelectedCategory,
-  clearSelectedCategories,
   reactToOneMovie,
-  setNumberOfResultsPerPage,
-  setOffSet,
 } from "../../store/actions";
 
 // == Composant
@@ -33,15 +32,11 @@ function Movies() {
   const {
     movies,
     filteredMovies,
-    categories,
-    selectedCategories,
     likedMovies,
     dislikedMovies,
     numberOfResultsPerPage,
     offSet,
   } = useSelector((state) => state);
-
-  const moviesLength = movies.length;
 
   const handleCategoriesData = (moviesData) => {
     const categoriesArray = moviesData.map((element) => element.category);
@@ -61,16 +56,6 @@ function Movies() {
     }
   };
 
-  const handlePrevResult = () => {
-    console.log(offSet - numberOfResultsPerPage);
-    dispatch(setOffSet(offSet - numberOfResultsPerPage));
-  };
-
-  const handleNextResult = () => {
-    console.log(offSet);
-    dispatch(setOffSet(offSet + numberOfResultsPerPage));
-  };
-
   useEffect(() => {
     fetchMoviesData();
   }, []);
@@ -79,98 +64,12 @@ function Movies() {
     handleCategoriesData(movies);
   }, [movies, filteredMovies]);
 
-  useEffect(() => {
-    if (selectedCategories.length !== 0) {
-      const filteredMoviesArray = [];
-
-      selectedCategories?.forEach((category) => {
-        filteredMoviesArray.push(
-          ...movies.filter((movie) => movie.category === category)
-        );
-      });
-
-      dispatch(setFilteredMoviesData(filteredMoviesArray));
-    } else {
-      dispatch(setFilteredMoviesData(movies));
-    }
-  }, [selectedCategories]);
-
   return (
     <div className="movies">
       <h1 className="movies-title">Explore </h1>
       <div className="movies-header">
-        <div className="movies-categories">
-          {categories?.map((category) => (
-            <p
-              key={category}
-              className={
-                selectedCategories?.find((el) => el === category)
-                  ? "movies-categories-element movies-categories-element--active"
-                  : "movies-categories-element "
-              }
-              onClick={() =>
-                selectedCategories?.find((el) => el === category)
-                  ? dispatch(removeSelectedCategory(category))
-                  : dispatch(setSelectedCategoriesData(category))
-              }
-            >
-              {category}
-            </p>
-          ))}
-          <p
-            className="movies-categories-clear"
-            onClick={() => {
-              dispatch(setFilteredMoviesData(movies));
-              dispatch(clearSelectedCategories());
-            }}
-          >
-            <i className="fa-solid fa-arrow-rotate-left" /> clear
-          </p>
-        </div>
-        <div className="movies-pagination">
-          <span
-            className={
-              offSet !== 0
-                ? "movies-pagination-prev movies-pagination-prev--active"
-                : "movies-pagination-prev"
-            }
-          >
-            <i
-              className="fa-solid fa-chevron-left"
-              onClick={() => (offSet !== 0 ? handlePrevResult() : undefined)}
-            />
-          </span>
-          <select
-            name="pets"
-            id="pet-select"
-            className="movies-pagination-input"
-            onChange={(e) =>
-              dispatch(setNumberOfResultsPerPage(e.target.value))
-            }
-          >
-            <option value="12">12</option>
-            <option value="8">8</option>
-            <option value="4">4</option>
-          </select>
-          <span
-            className={
-              offSet < moviesLength - offSet &&
-              movies?.length > numberOfResultsPerPage
-                ? "movies-pagination-next movies-pagination-next--active"
-                : "movies-pagination-next"
-            }
-          >
-            <i
-              className="fa-solid fa-chevron-right"
-              onClick={() =>
-                offSet < moviesLength - offSet &&
-                movies?.length > numberOfResultsPerPage
-                  ? handleNextResult()
-                  : undefined
-              }
-            />
-          </span>
-        </div>
+        <Categories />
+        <Pagination />
       </div>
       <div className="movies-container">
         {filteredMovies?.map(
