@@ -1,3 +1,4 @@
+/* eslint-disable operator-linebreak */
 /* eslint-disable brace-style */
 /* eslint-disable no-case-declarations */
 /* eslint-disable default-param-last */
@@ -22,6 +23,8 @@ const initialState = {
   filteredMovies: [],
   categories: [],
   selectedCategories: [],
+  likedMovies: [],
+  dislikedMovies: [],
   themeMode: "light",
 };
 
@@ -61,20 +64,34 @@ const reducer = (state = initialState, action) => {
       };
     case SET_REACTION_TO_ONE_MOVIE:
       const moviesData = [...state.movies];
+      const likedMovies = [...state.likedMovies];
+      const dislikedMovies = [...state.dislikedMovies];
 
       const selectedMovie = moviesData.find(
         (movie) => movie.id === action.movieId
       );
 
-      if (action.reactionType === "like") {
+      if (
+        action.reactionType === "like" &&
+        !likedMovies.find((movie) => movie.id === selectedMovie.id)
+      ) {
         selectedMovie.likes += 1;
-      } else if (action.reactionType === "dislike") {
+        likedMovies.push(selectedMovie);
+        console.log(likedMovies);
+      } else if (
+        action.reactionType === "dislike" &&
+        !dislikedMovies.find((movie) => movie.id === selectedMovie.id)
+      ) {
         selectedMovie.dislikes += 1;
+        dislikedMovies.push(selectedMovie);
+        console.log(dislikedMovies);
       }
 
       return {
         ...state,
         movies: moviesData,
+        likedMovies,
+        dislikedMovies,
       };
     case CHANGE_THEME_MODE:
       if (state.themeMode === "light") {
