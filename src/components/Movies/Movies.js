@@ -1,3 +1,8 @@
+/* eslint-disable object-curly-newline */
+/* eslint-disable comma-dangle */
+/* eslint-disable react/jsx-curly-newline */
+/* eslint-disable implicit-arrow-linebreak */
+/* eslint-disable no-confusing-arrow */
 /* eslint-disable brace-style */
 /* eslint-disable quotes */
 
@@ -7,19 +12,27 @@ import { useDispatch, useSelector } from "react-redux";
 // == Import
 import "./Movies.scss";
 import { movies$ } from "../../data/movies";
-import { setMoviesData, setCategoriesData } from "../../store/actions";
+import {
+  setMoviesData,
+  setFilteredMoviesData,
+  setCategoriesData,
+  setSelectedCategoriesData,
+  removeSelectedCategory,
+  clearSelectedCategories,
+} from "../../store/actions";
 
 // == Composant
 function Movies() {
   const dispatch = useDispatch();
 
-  const movies = useSelector((state) => state.movies);
-  const categories = useSelector((state) => state.categories);
+  const { movies, filteredMovies, categories, selectedCategories } =
+    useSelector((state) => state);
 
   const fetchMoviesData = async () => {
     try {
       const moviesData = await movies$;
       dispatch(setMoviesData(moviesData));
+      dispatch(setFilteredMoviesData(moviesData));
 
       const categoriesArray = moviesData.map((element) => element.category);
       const filteredCategories = Array.from(new Set(categoriesArray));
@@ -30,12 +43,25 @@ function Movies() {
     }
   };
 
-  const getMoviesCategories = () => {};
-
   useEffect(() => {
     fetchMoviesData();
-    getMoviesCategories();
   }, []);
+
+  useEffect(() => {
+    if (selectedCategories.length !== 0) {
+      const filteredMoviesArray = [];
+
+      selectedCategories?.forEach((category) => {
+        filteredMoviesArray.push(
+          ...movies.filter((movie) => movie.category === category)
+        );
+      });
+
+      dispatch(setFilteredMoviesData(filteredMoviesArray));
+    } else {
+      dispatch(setFilteredMoviesData(movies));
+    }
+  }, [selectedCategories]);
 
   return (
     <div className="movies">
@@ -44,17 +70,32 @@ function Movies() {
         {categories?.map((category) => (
           <p
             key={category}
-            className="movies-categories-element movies-categories-element--active"
+            className={
+              selectedCategories?.find((el) => el === category)
+                ? "movies-categories-element movies-categories-element--active"
+                : "movies-categories-element "
+            }
+            onClick={() =>
+              selectedCategories?.find((el) => el === category)
+                ? dispatch(removeSelectedCategory(category))
+                : dispatch(setSelectedCategoriesData(category))
+            }
           >
             {category}
           </p>
         ))}
-        <p className="movies-categories-clear">
+        <p
+          className="movies-categories-clear"
+          onClick={() => {
+            dispatch(setFilteredMoviesData(movies));
+            dispatch(clearSelectedCategories());
+          }}
+        >
           <i className="fa-solid fa-arrow-rotate-left" /> clear
         </p>
       </div>
       <div className="movies-container">
-        {movies?.map((movie) => (
+        {filteredMovies?.map((movie) => (
           <div key={movie.id} className="movies-card">
             <div className="position-relative">
               <img
