@@ -10,6 +10,7 @@ import { createStore } from "redux";
 import {
   SET_MOVIES_DATA,
   SET_FILTERED_MOVIES_DATA,
+  REMOVE_ONE_MOVIE,
   SET_CATEGORIES_DATA,
   SET_SELECTED_CATEGORIES_DATA,
   REMOVE_SELECTED_CATEGORY,
@@ -39,6 +40,16 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         filteredMovies: action.moviesData,
+      };
+    case REMOVE_ONE_MOVIE:
+      return {
+        ...state,
+        movies: [...state.movies].filter(
+          (movie) => movie.id !== action.movieId
+        ),
+        filteredMovies: [...state.filteredMovies].filter(
+          (movie) => movie.id !== action.movieId
+        ),
       };
     case SET_CATEGORIES_DATA:
       return {

@@ -1,6 +1,7 @@
 /* eslint-disable quotes */
 export const SET_MOVIES_DATA = "SET_MOVIES_DATA";
 export const SET_FILTERED_MOVIES_DATA = "SET_FILTERED_MOVIES_DATA";
+export const REMOVE_ONE_MOVIE = "REMOVE_ONE_MOVIE";
 export const SET_CATEGORIES_DATA = "SET_CATEGORIES_DATA";
 export const CHANGE_THEME_MODE = "CHANGE_THEME_MODE";
 export const SET_SELECTED_CATEGORIES_DATA = "SET_SELECTED_CATEGORIES_DATA";
@@ -20,6 +21,11 @@ export const setMoviesData = (moviesData) => ({
 export const setFilteredMoviesData = (moviesData) => ({
   type: SET_FILTERED_MOVIES_DATA,
   moviesData,
+});
+
+export const removeOneMovie = (movieId) => ({
+  type: REMOVE_ONE_MOVIE,
+  movieId,
 });
 
 export const setCategoriesData = (categoriesData) => ({

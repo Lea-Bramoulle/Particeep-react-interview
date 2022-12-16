@@ -103,6 +103,20 @@
             margin-left: 1rem;
             font-weight: lighter;
         }
+
+        &-delete {
+            margin-left: 0.9rem;
+            color: vars.$lightGrey;
+            font-weight: lighter;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        &-delete:hover {
+            color: vars.$primaryColor;
+            transition-duration: 1s;
+            cursor: pointer;
+        }
     }
 }
 

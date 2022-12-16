@@ -16,6 +16,7 @@ import { movies$ } from "../../data/movies";
 import {
   setMoviesData,
   setFilteredMoviesData,
+  removeOneMovie,
   setCategoriesData,
   setSelectedCategoriesData,
   removeSelectedCategory,
@@ -36,16 +37,19 @@ function Movies() {
     dislikedMovies,
   } = useSelector((state) => state);
 
+  const handleCategoriesData = (moviesData) => {
+    const categoriesArray = moviesData.map((element) => element.category);
+    const filteredCategories = Array.from(new Set(categoriesArray));
+
+    dispatch(setCategoriesData(filteredCategories));
+  };
+
   const fetchMoviesData = async () => {
     try {
       const moviesData = await movies$;
       dispatch(setMoviesData(moviesData));
       dispatch(setFilteredMoviesData(moviesData));
-
-      const categoriesArray = moviesData.map((element) => element.category);
-      const filteredCategories = Array.from(new Set(categoriesArray));
-
-      dispatch(setCategoriesData(filteredCategories));
+      handleCategoriesData(moviesData);
     } catch (error) {
       console.error(error);
     }
@@ -54,6 +58,10 @@ function Movies() {
   useEffect(() => {
     fetchMoviesData();
   }, []);
+
+  useEffect(() => {
+    handleCategoriesData(movies);
+  }, [movies, filteredMovies]);
 
   useEffect(() => {
     if (selectedCategories.length !== 0) {
@@ -139,7 +147,15 @@ function Movies() {
               </div>
             </div>
             <h2 className="movies-card-title">{movie.title}</h2>
-            <p className="movies-card-category">{movie.category}</p>
+            <div className="display-flex">
+              <p className="movies-card-category">{movie.category}</p>
+              <p
+                className="movies-card-delete"
+                onClick={() => dispatch(removeOneMovie(movie.id))}
+              >
+                supprimer
+              </p>
+            </div>
           </div>
         ))}
       </div>
