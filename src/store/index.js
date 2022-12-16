@@ -64,8 +64,8 @@ const reducer = (state = initialState, action) => {
       };
     case SET_REACTION_TO_ONE_MOVIE:
       const moviesData = [...state.movies];
-      const likedMovies = [...state.likedMovies];
-      const dislikedMovies = [...state.dislikedMovies];
+      let likedMovies = [...state.likedMovies];
+      let dislikedMovies = [...state.dislikedMovies];
 
       const selectedMovie = moviesData.find(
         (movie) => movie.id === action.movieId
@@ -75,16 +75,32 @@ const reducer = (state = initialState, action) => {
         action.reactionType === "like" &&
         !likedMovies.find((movie) => movie.id === selectedMovie.id)
       ) {
-        selectedMovie.likes += 1;
-        likedMovies.push(selectedMovie);
-        console.log(likedMovies);
+        if (!dislikedMovies.find((movie) => movie.id === selectedMovie.id)) {
+          selectedMovie.likes += 1;
+          likedMovies.push(selectedMovie);
+        } else {
+          selectedMovie.likes += 1;
+          selectedMovie.dislikes -= 1;
+          likedMovies.push(selectedMovie);
+          dislikedMovies = [...state.dislikedMovies].filter(
+            (movie) => selectedMovie.id !== movie.id
+          );
+        }
       } else if (
         action.reactionType === "dislike" &&
         !dislikedMovies.find((movie) => movie.id === selectedMovie.id)
       ) {
-        selectedMovie.dislikes += 1;
-        dislikedMovies.push(selectedMovie);
-        console.log(dislikedMovies);
+        if (!likedMovies.find((movie) => movie.id === selectedMovie.id)) {
+          selectedMovie.dislikes += 1;
+          dislikedMovies.push(selectedMovie);
+        } else {
+          selectedMovie.dislikes += 1;
+          selectedMovie.likes -= 1;
+          dislikedMovies.push(selectedMovie);
+          likedMovies = [...state.likedMovies].filter(
+            (movie) => selectedMovie.id !== movie.id
+          );
+        }
       }
 
       return {

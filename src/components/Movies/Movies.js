@@ -27,8 +27,14 @@ import {
 function Movies() {
   const dispatch = useDispatch();
 
-  const { movies, filteredMovies, categories, selectedCategories } =
-    useSelector((state) => state);
+  const {
+    movies,
+    filteredMovies,
+    categories,
+    selectedCategories,
+    likedMovies,
+    dislikedMovies,
+  } = useSelector((state) => state);
 
   const fetchMoviesData = async () => {
     try {
@@ -107,7 +113,11 @@ function Movies() {
               <div className="movies-card-likes">
                 <span className="movies-card-likes--like">
                   <i
-                    className="fa-regular fa-thumbs-up"
+                    className={
+                      likedMovies.find((el) => el.id === movie.id)
+                        ? "fa-regular fa-thumbs-up fa-regular fa-thumbs-up--active"
+                        : "fa-regular fa-thumbs-up"
+                    }
                     onClick={() => dispatch(reactToOneMovie(movie.id, "like"))}
                   />{" "}
                   {movie.likes}
@@ -116,7 +126,11 @@ function Movies() {
                 <span className="movies-card-likes--dislike">
                   {movie.dislikes}{" "}
                   <i
-                    className="fa-regular fa-thumbs-down"
+                    className={
+                      dislikedMovies.find((el) => el.id === movie.id)
+                        ? "fa-regular fa-thumbs-down fa-regular fa-thumbs-down--active"
+                        : "fa-regular fa-thumbs-down"
+                    }
                     onClick={() =>
                       dispatch(reactToOneMovie(movie.id, "dislike"))
                     }

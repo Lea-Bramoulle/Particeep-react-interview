@@ -106,8 +106,8 @@
     }
 }
 
-.fa-thumbs-down:hover {
-    text-shadow: 0px 0px 13px rgba(251, 99, 57, 0.646);
+.fa-thumbs-up--active {
+    text-shadow: 0px 0px 13px rgba(66, 79, 195, 0.9);
     transition-duration: 0.5s;
 }
 
@@ -115,3 +115,13 @@
     text-shadow: 0px 0px 13px rgba(66, 79, 195, 0.646);
     transition-duration: 0.5s;
 }
+
+.fa-thumbs-down--active {
+    text-shadow: 0px 0px 13px rgba(251, 99, 57, 0.9);
+}
+
+.fa-thumbs-down:hover {
+    text-shadow: 0px 0px 13px rgba(251, 99, 57, 0.646);
+    transition-duration: 0.5s;
+}
+
