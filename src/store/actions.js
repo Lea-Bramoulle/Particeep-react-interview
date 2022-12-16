@@ -8,6 +8,8 @@ export const SET_SELECTED_CATEGORIES_DATA = "SET_SELECTED_CATEGORIES_DATA";
 export const REMOVE_SELECTED_CATEGORY = "REMOVE_SELECTED_CATEGORY";
 export const CLEAR_SELECTED_CATEGORIES = "CLEAR_SELECTED_CATEGORIES";
 export const SET_REACTION_TO_ONE_MOVIE = "SET_REACTION_TO_ONE_MOVIE";
+export const CHANGE_NB_RESULTS_PER_PAGE = "CHANGE_NB_RESULTS_PER_PAGE";
+export const CHANGE_OFFSET = "CHANGE_OFFSET";
 
 export const changeThemeMode = () => ({
   type: CHANGE_THEME_MODE,
@@ -51,4 +53,14 @@ export const reactToOneMovie = (movieId, reactionType) => ({
   type: SET_REACTION_TO_ONE_MOVIE,
   movieId,
   reactionType,
+});
+
+export const setNumberOfResultsPerPage = (value) => ({
+  type: CHANGE_NB_RESULTS_PER_PAGE,
+  value,
+});
+
+export const setOffSet = (value) => ({
+  type: CHANGE_OFFSET,
+  value,
 });

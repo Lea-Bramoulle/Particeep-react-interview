@@ -16,6 +16,8 @@ import {
   REMOVE_SELECTED_CATEGORY,
   CLEAR_SELECTED_CATEGORIES,
   SET_REACTION_TO_ONE_MOVIE,
+  CHANGE_NB_RESULTS_PER_PAGE,
+  CHANGE_OFFSET,
   CHANGE_THEME_MODE,
 } from "./actions";
 
@@ -26,6 +28,8 @@ const initialState = {
   selectedCategories: [],
   likedMovies: [],
   dislikedMovies: [],
+  numberOfResultsPerPage: 12,
+  offSet: 0,
   themeMode: "light",
 };
 
@@ -119,6 +123,16 @@ const reducer = (state = initialState, action) => {
         movies: moviesData,
         likedMovies,
         dislikedMovies,
+      };
+    case CHANGE_NB_RESULTS_PER_PAGE:
+      return {
+        ...state,
+        numberOfResultsPerPage: Number(action.value),
+      };
+    case CHANGE_OFFSET:
+      return {
+        ...state,
+        offSet: action.value,
       };
     case CHANGE_THEME_MODE:
       if (state.themeMode === "light") {

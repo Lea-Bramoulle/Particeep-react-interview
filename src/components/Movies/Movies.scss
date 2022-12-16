@@ -12,7 +12,14 @@
         font-weight: bolder;
     }
 
+    &-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+    }
+
     &-categories {
+        width:80%;
         display: flex;
         flex-wrap: wrap;
         align-items: center;
@@ -43,6 +50,40 @@
             & i {
                 font-size: 0.6rem;
             }
+        }
+    }
+
+    &-pagination {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 1rem;
+
+        &-prev {
+            padding:0.5rem 1rem;
+            border-radius: 20px 0 0 20px;
+            background-color: white;
+
+            &--active {
+                color: vars.$primaryColor;
+                cursor: pointer;
+            }
+        }
+
+        &-next {
+            padding:0.5rem 1rem;
+            border-radius: 0 20px 20px 0;
+            background-color: white;
+
+            &--active {
+                color: vars.$primaryColor;
+                cursor: pointer;
+            }        }
+
+        &-input {
+            background-color: #fff;
+            padding: 0.5rem;
+            border-color:white;
         }
     }
 
