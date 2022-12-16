@@ -1,0 +1,35 @@
+@use 'src/styles/vars';
+
+.favorites {
+    height:65%;
+    min-height:500px;
+    overflow-y: scroll;
+    width:7rem;
+    margin: 0 auto;
+    padding: 0 1rem;
+
+    &-card {
+        position:relative;
+        margin: 1rem 0;
+
+        &-img {
+            width:100%;
+            height:5rem;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        &-like {
+            position:absolute;
+            top: -0.5rem;
+            right:-0.5rem;
+            padding: 0.25rem;
+            background-color: #fff;
+            border-radius: 5px;
+
+            & i {
+                color: vars.$primaryColor;
+            }
+        }
+    }
+}

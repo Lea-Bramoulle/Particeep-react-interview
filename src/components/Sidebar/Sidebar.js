@@ -3,6 +3,8 @@
 // == Import
 import "./Sidebar.scss";
 
+import Favorites from "../Favorites/Favorites";
+
 // == Composant
 function Sidebar() {
   return (
@@ -12,7 +14,7 @@ function Sidebar() {
         alt="logo movies"
         className="sidebar-logo"
       />
-      <h1>Composant : Sidebar</h1>
+      <Favorites />
       <div>
         <div className="sidebar-toggle">
           <i className="fa-solid fa-chevron-right" />
