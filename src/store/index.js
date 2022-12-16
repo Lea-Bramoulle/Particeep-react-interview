@@ -19,6 +19,7 @@ import {
   CHANGE_NB_RESULTS_PER_PAGE,
   CHANGE_OFFSET,
   CHANGE_THEME_MODE,
+  SET_TOGGLE_SIDEBAR,
 } from "./actions";
 
 const initialState = {
@@ -31,6 +32,7 @@ const initialState = {
   numberOfResultsPerPage: 12,
   offSet: 0,
   themeMode: "light",
+  toggleSidebar: false,
 };
 
 const reducer = (state = initialState, action) => {
@@ -116,6 +118,11 @@ const reducer = (state = initialState, action) => {
             (movie) => selectedMovie.id !== movie.id
           );
         }
+      } else if (action.reactionType === "unlike") {
+        likedMovies = [...state.likedMovies].filter(
+          (movie) => selectedMovie.id !== movie.id
+        );
+        selectedMovie.likes -= 1;
       }
 
       return {
@@ -133,6 +140,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         offSet: action.value,
+      };
+    case SET_TOGGLE_SIDEBAR:
+      return {
+        ...state,
+        toggleSidebar: !state.toggleSidebar,
       };
     case CHANGE_THEME_MODE:
       if (state.themeMode === "light") {

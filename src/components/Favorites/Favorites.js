@@ -11,12 +11,16 @@ import { reactToOneMovie } from "../../store/actions";
 function Favorites() {
   const dispatch = useDispatch();
 
-  const { likedMovies } = useSelector((state) => state);
+  const { likedMovies, toggleSidebar } = useSelector((state) => state);
 
   return (
-    <div className="favorites">
+    <div
+      className={
+        toggleSidebar ? "favorites sidebar-full" : "favorites sidebar-min"
+      }
+    >
       {likedMovies?.map((movie) => (
-        <div className="favorites-card">
+        <div className="favorites-card " key={movie.id}>
           <img
             src="https://images.affiches-et-posters.com//albums/3/2619/medium/affiche-film-gladiator-164.jpg"
             alt="img movie"
@@ -25,9 +29,15 @@ function Favorites() {
           <div className="favorites-card-like">
             <i
               className="fa-solid fa-heart"
-              onClick={() => dispatch(reactToOneMovie(movie.id, "dislike"))}
+              onClick={() => dispatch(reactToOneMovie(movie.id, "unlike"))}
             />
           </div>
+          {toggleSidebar && (
+            <div className="favorites-card-content">
+              <p className="favorites-card-title">{movie.title}</p>
+              <p className="favorites-card-subtitle">{movie.category}</p>
+            </div>
+          )}
         </div>
       ))}
     </div>

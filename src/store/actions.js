@@ -10,6 +10,7 @@ export const CLEAR_SELECTED_CATEGORIES = "CLEAR_SELECTED_CATEGORIES";
 export const SET_REACTION_TO_ONE_MOVIE = "SET_REACTION_TO_ONE_MOVIE";
 export const CHANGE_NB_RESULTS_PER_PAGE = "CHANGE_NB_RESULTS_PER_PAGE";
 export const CHANGE_OFFSET = "CHANGE_OFFSET";
+export const SET_TOGGLE_SIDEBAR = "SET_TOGGLE_SIDEBAR";
 
 export const changeThemeMode = () => ({
   type: CHANGE_THEME_MODE,
@@ -63,4 +64,8 @@ export const setNumberOfResultsPerPage = (value) => ({
 export const setOffSet = (value) => ({
   type: CHANGE_OFFSET,
   value,
+});
+
+export const setToggleSidebar = () => ({
+  type: SET_TOGGLE_SIDEBAR,
 });

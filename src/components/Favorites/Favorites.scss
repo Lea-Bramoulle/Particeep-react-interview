@@ -4,16 +4,16 @@
     height:65%;
     min-height:500px;
     overflow-y: scroll;
-    width:7rem;
     margin: 0 auto;
     padding: 0 1rem;
 
     &-card {
         position:relative;
         margin: 1rem 0;
+        display: flex;
 
         &-img {
-            width:100%;
+            width:5rem;
             height:5rem;
             object-fit: cover;
             border-radius: 10px;
@@ -22,7 +22,7 @@
         &-like {
             position:absolute;
             top: -0.5rem;
-            right:-0.5rem;
+            left:4rem;
             padding: 0.25rem;
             background-color: #fff;
             border-radius: 5px;
@@ -32,5 +32,26 @@
                 cursor: pointer;
             }
         }
+
+        &-content {
+            padding: 1.5rem;
+
+            & p {
+                word-wrap: break-word;            
+            }
+        }
+
+        &-subtitle {
+            font-weight: lighter;
+            padding-top: 0.25rem;
+        }
     }
+}
+
+.sidebar-full {
+    width:16rem;
+}
+
+.sidebar-min {
+    width:7rem;
 }
