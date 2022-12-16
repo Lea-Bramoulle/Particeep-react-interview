@@ -3,10 +3,14 @@
 // == Import
 import "./Favorites.scss";
 
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+
+import { reactToOneMovie } from "../../store/actions";
 
 // == Composant
 function Favorites() {
+  const dispatch = useDispatch();
+
   const { likedMovies } = useSelector((state) => state);
 
   return (
@@ -19,7 +23,10 @@ function Favorites() {
             className="favorites-card-img"
           />
           <div className="favorites-card-like">
-            <i className="fa-solid fa-heart" />
+            <i
+              className="fa-solid fa-heart"
+              onClick={() => dispatch(reactToOneMovie(movie.id, "dislike"))}
+            />
           </div>
         </div>
       ))}
