@@ -1,3 +1,4 @@
+/* eslint-disable operator-linebreak */
 /* eslint-disable object-curly-newline */
 /* eslint-disable comma-dangle */
 /* eslint-disable react/jsx-curly-newline */
@@ -19,6 +20,7 @@ import {
   setSelectedCategoriesData,
   removeSelectedCategory,
   clearSelectedCategories,
+  reactToOneMovie,
 } from "../../store/actions";
 
 // == Composant
@@ -104,11 +106,21 @@ function Movies() {
               />
               <div className="movies-card-likes">
                 <span className="movies-card-likes--like">
-                  <i className="fa-regular fa-thumbs-up" /> {movie.likes}
+                  <i
+                    className="fa-regular fa-thumbs-up"
+                    onClick={() => dispatch(reactToOneMovie(movie.id, "like"))}
+                  />{" "}
+                  {movie.likes}
                 </span>
 
                 <span className="movies-card-likes--dislike">
-                  {movie.dislikes} <i className="fa-regular fa-thumbs-down" />
+                  {movie.dislikes}{" "}
+                  <i
+                    className="fa-regular fa-thumbs-down"
+                    onClick={() =>
+                      dispatch(reactToOneMovie(movie.id, "dislike"))
+                    }
+                  />
                 </span>
               </div>
             </div>

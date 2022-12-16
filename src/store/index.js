@@ -1,3 +1,5 @@
+/* eslint-disable brace-style */
+/* eslint-disable no-case-declarations */
 /* eslint-disable default-param-last */
 /* eslint-disable comma-dangle */
 /* eslint-disable no-underscore-dangle */
@@ -11,6 +13,7 @@ import {
   SET_SELECTED_CATEGORIES_DATA,
   REMOVE_SELECTED_CATEGORY,
   CLEAR_SELECTED_CATEGORIES,
+  SET_REACTION_TO_ONE_MOVIE,
   CHANGE_THEME_MODE,
 } from "./actions";
 
@@ -55,6 +58,23 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         selectedCategories: [],
+      };
+    case SET_REACTION_TO_ONE_MOVIE:
+      const moviesData = [...state.movies];
+
+      const selectedMovie = moviesData.find(
+        (movie) => movie.id === action.movieId
+      );
+
+      if (action.reactionType === "like") {
+        selectedMovie.likes += 1;
+      } else if (action.reactionType === "dislike") {
+        selectedMovie.dislikes += 1;
+      }
+
+      return {
+        ...state,
+        movies: moviesData,
       };
     case CHANGE_THEME_MODE:
       if (state.themeMode === "light") {

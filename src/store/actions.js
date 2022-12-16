@@ -6,6 +6,7 @@ export const CHANGE_THEME_MODE = "CHANGE_THEME_MODE";
 export const SET_SELECTED_CATEGORIES_DATA = "SET_SELECTED_CATEGORIES_DATA";
 export const REMOVE_SELECTED_CATEGORY = "REMOVE_SELECTED_CATEGORY";
 export const CLEAR_SELECTED_CATEGORIES = "CLEAR_SELECTED_CATEGORIES";
+export const SET_REACTION_TO_ONE_MOVIE = "SET_REACTION_TO_ONE_MOVIE";
 
 export const changeThemeMode = () => ({
   type: CHANGE_THEME_MODE,
@@ -38,4 +39,10 @@ export const removeSelectedCategory = (category) => ({
 
 export const clearSelectedCategories = () => ({
   type: CLEAR_SELECTED_CATEGORIES,
+});
+
+export const reactToOneMovie = (movieId, reactionType) => ({
+  type: SET_REACTION_TO_ONE_MOVIE,
+  movieId,
+  reactionType,
 });
