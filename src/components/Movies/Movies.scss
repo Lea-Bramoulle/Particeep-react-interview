@@ -16,76 +16,8 @@
         display: flex;
         justify-content: space-between;
         align-items: baseline;
-    }
-
-    &-categories {
-        width:80%;
-        display: flex;
         flex-wrap: wrap;
-        align-items: center;
-        margin-top: 2rem;
-
-        &-element {
-            padding: 0.5rem 1rem;
-            background-color: #fff;
-            border-radius: 4px;
-            margin-right: 1rem;
-            cursor: pointer;
-
-
-            &--active {
-                background: rgb(236,61,103);
-                background: linear-gradient(128deg, rgba(236,61,103,1) 0%, rgba(241, 131, 94, 0.767) 100%);
-                color:white;
-            }
-
-        }
-
-        &-clear {
-            opacity: 0.5;
-            text-decoration: underline;
-            cursor: pointer;
-
-
-            & i {
-                font-size: 0.6rem;
-            }
-        }
-    }
-
-    &-pagination {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-top: 1rem;
-
-        &-prev {
-            padding:0.5rem 1rem;
-            border-radius: 20px 0 0 20px;
-            background-color: white;
-
-            &--active {
-                color: vars.$primaryColor;
-                cursor: pointer;
-            }
-        }
-
-        &-next {
-            padding:0.5rem 1rem;
-            border-radius: 0 20px 20px 0;
-            background-color: white;
-
-            &--active {
-                color: vars.$primaryColor;
-                cursor: pointer;
-            }        }
-
-        &-input {
-            background-color: #fff;
-            padding: 0.5rem;
-            border-color:white;
-        }
-    }
+    } 
 
     &-container {
         height:90%;
@@ -180,3 +112,46 @@
     transition-duration: 0.5s;
 }
 
+
+
+
+// RESPONSIVE <1150px 
+
+@media screen and (width < 1150px) {
+    .movies {
+        
+        &-card {
+            width:45%;
+
+            & img {
+                height:28rem;
+            }
+        }
+    }
+  }
+
+  // RESPONSIVE <900px 
+
+@media screen and (width < 900px) {
+    .movies {
+        
+        &-card {
+            width:40%;
+
+            & img {
+                height:26rem;
+            }
+        }
+    }
+  }
+  
+  // RESPONSIVE <700px 
+  
+  @media screen and (width < 700px) {
+    .movies {
+        
+        &-card {
+            width:100%;
+        }
+    }
+  }

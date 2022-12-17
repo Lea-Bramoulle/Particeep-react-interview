@@ -100,7 +100,7 @@ function Movies() {
                     </span>
 
                     <span className="movies-card-likes--dislike">
-                      {movie.dislikes}{" "}
+                      {movie.dislikes}
                       <i
                         className={
                           dislikedMovies.find((el) => el.id === movie.id)

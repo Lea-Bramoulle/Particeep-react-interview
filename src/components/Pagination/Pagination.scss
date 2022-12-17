@@ -1,0 +1,35 @@
+@use 'src/styles/vars';
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+
+    &-prev {
+        padding:0.5rem 1rem;
+        border-radius: 20px 0 0 20px;
+        background-color: white;
+
+        &--active {
+            color: vars.$primaryColor;
+            cursor: pointer;
+        }
+    }
+
+    &-next {
+        padding:0.5rem 1rem;
+        border-radius: 0 20px 20px 0;
+        background-color: white;
+
+        &--active {
+            color: vars.$primaryColor;
+            cursor: pointer;
+        }        }
+
+    &-input {
+        background-color: #fff;
+        padding: 0.5rem;
+        border-color:white;
+    }
+}

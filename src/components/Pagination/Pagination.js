@@ -30,12 +30,12 @@ function Pagination() {
   };
 
   return (
-    <div className="movies-pagination">
+    <div className="pagination">
       <span
         className={
           offSet !== 0
-            ? "movies-pagination-prev movies-pagination-prev--active"
-            : "movies-pagination-prev"
+            ? "pagination-prev pagination-prev--active"
+            : "pagination-prev"
         }
       >
         <i
@@ -46,7 +46,7 @@ function Pagination() {
       <select
         name="pets"
         id="pet-select"
-        className="movies-pagination-input"
+        className="pagination-input"
         onChange={(e) => {
           dispatch(setNumberOfResultsPerPage(e.target.value));
           dispatch(setOffSet(0));
@@ -60,8 +60,8 @@ function Pagination() {
         className={
           offSet < moviesLength - offSet &&
           filteredMovies?.length > numberOfResultsPerPage
-            ? "movies-pagination-next movies-pagination-next--active"
-            : "movies-pagination-next"
+            ? "pagination-next pagination-next--active"
+            : "pagination-next"
         }
       >
         <i

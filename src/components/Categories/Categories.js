@@ -7,6 +7,7 @@
 /* eslint-disable global-require */
 /* eslint-disable quotes */
 // == Import
+import "./categories.scss";
 
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -43,14 +44,14 @@ function Categories() {
   }, [selectedCategories]);
 
   return (
-    <div className="movies-categories">
+    <div className="categories">
       {categories?.map((category) => (
         <p
           key={category}
           className={
             selectedCategories?.find((el) => el === category)
-              ? "movies-categories-element movies-categories-element--active"
-              : "movies-categories-element "
+              ? "categories-element categories-element--active"
+              : "categories-element"
           }
           onClick={() =>
             selectedCategories?.find((el) => el === category)
@@ -62,7 +63,7 @@ function Categories() {
         </p>
       ))}
       <p
-        className="movies-categories-clear"
+        className="categories-clear"
         onClick={() => {
           dispatch(setFilteredMoviesData(movies));
           dispatch(clearSelectedCategories());
