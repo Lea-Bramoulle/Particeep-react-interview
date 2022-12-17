@@ -12,6 +12,7 @@ const movies = [
     category: "Comedy",
     likes: 4,
     dislikes: 1,
+    image: "ocean-8",
   },
   {
     id: "2",
@@ -19,6 +20,7 @@ const movies = [
     category: "Comedy",
     likes: 2,
     dislikes: 0,
+    image: "midnight-sun",
   },
   {
     id: "3",
@@ -26,6 +28,7 @@ const movies = [
     category: "Animation",
     likes: 3,
     dislikes: 1,
+    image: "les-indestructibles-2",
   },
   {
     id: "4",
@@ -33,6 +36,7 @@ const movies = [
     category: "Thriller",
     likes: 6,
     dislikes: 6,
+    image: "sans-un-bruit",
   },
   {
     id: "5",
@@ -40,6 +44,7 @@ const movies = [
     category: "Drame",
     likes: 16,
     dislikes: 2,
+    image: "creed-II",
   },
   {
     id: "6",
@@ -47,6 +52,7 @@ const movies = [
     category: "Thriller",
     likes: 11,
     dislikes: 3,
+    image: "pulp-fiction",
   },
   {
     id: "7",
@@ -54,6 +60,7 @@ const movies = [
     category: "Thriller",
     likes: 12333,
     dislikes: 32,
+    image: "pulp-fiction",
   },
   {
     id: "8",
@@ -61,6 +68,7 @@ const movies = [
     category: "Thriller",
     likes: 2,
     dislikes: 1,
+    image: "seven",
   },
   {
     id: "9",
@@ -68,6 +76,7 @@ const movies = [
     category: "Thriller",
     likes: 2,
     dislikes: 1,
+    image: "inception",
   },
   {
     id: "10",
@@ -75,6 +84,7 @@ const movies = [
     category: "Thriller",
     likes: 22,
     dislikes: 12,
+    image: "gone-girl",
   },
 ];
 

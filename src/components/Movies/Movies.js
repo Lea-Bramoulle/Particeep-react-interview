@@ -79,7 +79,7 @@ function Movies() {
               <div key={movie.id} className="movies-card">
                 <div className="position-relative">
                   <img
-                    src="https://images.affiches-et-posters.com//albums/3/2619/medium/affiche-film-gladiator-164.jpg"
+                    src={require(`./../../assets/images/${movie.image}.jpeg`)}
                     alt="movie Poster"
                   />
                   <div className="movies-card-likes">
