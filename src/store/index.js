@@ -123,6 +123,11 @@ const reducer = (state = initialState, action) => {
           (movie) => selectedMovie.id !== movie.id
         );
         selectedMovie.likes -= 1;
+      } else if (action.reactionType === "undislike") {
+        dislikedMovies = [...state.dislikedMovies].filter(
+          (movie) => selectedMovie.id !== movie.id
+        );
+        selectedMovie.dislikes -= 1;
       }
 
       return {

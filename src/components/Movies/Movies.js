@@ -91,7 +91,9 @@ function Movies() {
                             : "fa-regular fa-thumbs-up"
                         }
                         onClick={() =>
-                          dispatch(reactToOneMovie(movie.id, "like"))
+                          likedMovies.find((el) => el.id === movie.id)
+                            ? dispatch(reactToOneMovie(movie.id, "unlike"))
+                            : dispatch(reactToOneMovie(movie.id, "like"))
                         }
                       />{" "}
                       {movie.likes}
@@ -106,7 +108,9 @@ function Movies() {
                             : "fa-regular fa-thumbs-down"
                         }
                         onClick={() =>
-                          dispatch(reactToOneMovie(movie.id, "dislike"))
+                          dislikedMovies.find((el) => el.id === movie.id)
+                            ? dispatch(reactToOneMovie(movie.id, "undislike"))
+                            : dispatch(reactToOneMovie(movie.id, "dislike"))
                         }
                       />
                     </span>
