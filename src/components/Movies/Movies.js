@@ -1,3 +1,5 @@
+/* eslint-disable import/no-dynamic-require */
+/* eslint-disable global-require */
 /* eslint-disable operator-linebreak */
 /* eslint-disable object-curly-newline */
 /* eslint-disable comma-dangle */
@@ -80,7 +82,7 @@ function Movies() {
                 <div className="position-relative">
                   <img
                     src={require(`./../../assets/images/${movie.image}.jpeg`)}
-                    alt="movie Poster"
+                    alt={`Poster movie ${movie.title}`}
                   />
                   <div className="movies-card-likes">
                     <span className="movies-card-likes--like">

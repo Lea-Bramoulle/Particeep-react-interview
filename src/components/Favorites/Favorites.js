@@ -1,3 +1,4 @@
+/* eslint-disable import/no-dynamic-require */
 /* eslint-disable global-require */
 /* eslint-disable quotes */
 // == Import
@@ -22,8 +23,8 @@ function Favorites() {
       {likedMovies?.map((movie) => (
         <div className="favorites-card " key={movie.id}>
           <img
-            src="https://images.affiches-et-posters.com//albums/3/2619/medium/affiche-film-gladiator-164.jpg"
-            alt="img movie"
+            src={require(`./../../assets/images/${movie.image}.jpeg`)}
+            alt={`Poster movie ${movie.title}`}
             className="favorites-card-img"
           />
           <div className="favorites-card-like">
